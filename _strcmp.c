@@ -1,10 +1,11 @@
 #include "shed.h"
 
 /**
- * _strcmp - compares two strings
- * @s1: first string
- * @s2: second string
- * Return: integer
+ * _strcmp - Compares two strings.
+ *
+ * @s1: First string.
+ * @s2: Second string.
+ * Return: Integer, representing difference betwixt strings.
  */
 
 int _strcmp(char *s1, char *s2)
