@@ -81,5 +81,5 @@ Enter the following command to compile:
 We would like to thank the staff and our wonderful peers at Holberton School for providing an effective learning experience throughout this project.
 
 <p align="center">
-<a href="https://www.holbertonschool.com"><img src="https://intranet.hbtn.io/assets/holberton-logo-simplified-d4e8a1e8bf5ad93c8c3ce32895b4b53749b477b7ba7342d7f064e6883bcd3be2.png"></a>
+<a href="https://www.holbertonschool.com"><img width="150" src="https://i.imgur.com/xmkJjII.jpg"></a>
 </p>
