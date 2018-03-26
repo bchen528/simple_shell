@@ -4,6 +4,12 @@
 
 A recreation of a shell that takes user input (commands with arguments) and outputs accordingly.
 
+Basic loop of a shell:
+
+1. Read command from standard input.
+2. Parse commandline string into an executable program and its arguments.
+3. Run parsed command.
+
 ## Environment
 Our custom shell was developed and tested on `Ubuntu 14.04 LTS` via Vagrant in VirtualBox.
 
