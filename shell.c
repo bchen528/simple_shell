@@ -22,12 +22,12 @@ int main(int argc, char **argv, char **env)
 		call_count = 0;
 
 		call_count++;
-
+/* should we write to stdin so it's unpipable */
 		write(STDIN_FILENO, "\033[1;35m$\033[0m ", 13);
 		run_shell = getline(&line, &count, stdin);
 		if (run_shell == -1)
 		{
-			write(2, "\n", 1);
+			write(STDIN_FILENO, "\n", 1);
 			return(0);
 /*
 			perror("Arik, getline failed");
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **env)
 		}
 		array = string_token(line, "\n ");
 		if (array == NULL)
-		free(line);
+			free(line);
 		if (array != NULL && !(strcmp(array[0], "exit")))
 		{
 /*			write(2, "sh: 1: exit: Illegal number: ", 29);
