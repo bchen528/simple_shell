@@ -15,5 +15,11 @@
 
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
+char **string_token(char *in, char *delim);
+char **tokenizer(char *str, const char *delim);
+char *path_helper(char **path, char *name);
+char *stupid_cat(char *path, char *name);
+int forking_helper(char **av);
+int print_env(char **env);
 
 #endif /* SHED_H */
