@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **env)
 		if (run_shell == -1)
 		{
 			write(STDIN_FILENO, "\n", 1);
-			return(0);
+			return (0);
 /*
 			perror("Arik, getline failed");
 			line = NULL;
@@ -48,16 +48,16 @@ make custom atoi that returns -1 when being asked to convert something
 not number and print out "sh: 1: exit: Illegal number: %s", array[1]
 if not number
 			exit_code = array[1];
-
-			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-			write(STDERR_FILENO, ": ", 2);
-			write(STDERR_FILENO, call_count, _strlen(?:));
-			write(STDERR_FILENO, ": exit", 6);
+*/
+			write(STDIN_FILENO, argv[0], _strlen(argv[0]));
+			write(STDIN_FILENO, ": ", 2);
+			write(STDIN_FILENO, call_count, _strlen(?:));
+			write(STDIN_FILENO, ": exit", 6);
 					fix call_count number to print istead of buffer of 100
 					exit_code = array[1]; if not string
-*/			break;
+			break;
 		}
-		if(array != NULL && !(strcmp(array[0], "env")))
+		if (array != NULL && !(strcmp(array[0], "env")))
 		{
 			print_env(env);
 		}
