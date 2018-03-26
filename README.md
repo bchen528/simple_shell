@@ -14,7 +14,7 @@ Our custom shell was developed and tested on `Ubuntu 14.04 LTS` via Vagrant in V
 - prompt displays again each time command is executed
 - uses PATH variable to find executable command
 - if executable is not found, prints an error message and displays prompt again
-- includes an exit functions that exits the shell
+- includes an exit function that exits the shell
 - includes an env built-in that prints the current environment
 
 ## File Contents
