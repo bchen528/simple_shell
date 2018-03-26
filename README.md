@@ -9,13 +9,13 @@ Our custom shell was developed and tested on `Ubuntu 14.04 LTS` via Vagrant in V
 
 ## Features
 
--displays a prompt and waits for user to type a command
--can handle commands with options and arguments
--prompt displays again each time command is executed
--uses PATH variable to find executable command
--if executable is not found, prints an error message and displays prompt again
--includes an exit functions that exits the shell
--includes an env built-in that prints the current environment
+- displays a prompt and waits for user to type a command
+- can handle commands with options and arguments
+- prompt displays again each time command is executed
+- uses PATH variable to find executable command
+- if executable is not found, prints an error message and displays prompt again
+- includes an exit functions that exits the shell
+- includes an env built-in that prints the current environment
 
 ## File Contents
 This repository contains the following files:
@@ -58,7 +58,7 @@ $ git clone https://github.com/aDENTinTIME/simple_shell.git
 Enter the following command to compile:
 ` $ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh `
 
-####Example Code
+## Example
 
 ```
 
@@ -67,8 +67,8 @@ Enter the following command to compile:
 
 ## Authors
 
-*[**Arik Rosenthal**](https://github.com/aDENTinTIME)
-*[**Becky Chen**](https://github.com/bchen528)
+* [**Arik Rosenthal**](https://github.com/aDENTinTIME)
+* [**Becky Chen**](https://github.com/bchen528)
 
 ## Acknowledgements
 
