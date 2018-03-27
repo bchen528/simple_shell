@@ -6,7 +6,8 @@ int print_env(char **env)
 
 	while (env[i])
 	{
-		printf("%s\n", env[i]);
+		write(STDOUT_FILENO, env[i], _strlen(env[i]));
+		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
 	return (0);

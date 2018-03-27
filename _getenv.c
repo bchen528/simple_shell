@@ -42,30 +42,24 @@ char **splitEnv(char *str, const char *delim)
  * NULL if environment variable DNE
  */
 
-char *_getenv(const char *name)
+char *_getenv(const char *name, char **env)
 {
 	char **buf;
 	char *value;
 	int i = 0;
 
-	while (environ[i] != NULL)
+	while (env[i] != NULL)
 	{
-		buf = splitEnv(environ[i], "=");
+		buf = splitEnv(env[i], "=");
 
 		if (strcmp(buf[0], name) == 0)
 		{
 			value = buf[1];
 			break;
 		}
-		else if (environ[i] == NULL)
+		else if (env[i] == NULL)
 			return (NULL);
 		i++;
 	}
 	return (value);
-}
-
-int main(void)
-{
-	printf("PATH: %s\n", _getenv("PATH"));
-	return (0);
 }

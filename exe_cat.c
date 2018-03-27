@@ -1,6 +1,6 @@
 #include "shed.h"
 
-char *path_helper(char **path, char *name)
+char *exe_cat(char **path, char *name)
 {
 	int i = 0;
 	DIR *dir;
