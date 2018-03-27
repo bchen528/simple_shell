@@ -49,6 +49,9 @@ not number and print out "sh: 1: exit: Illegal number: %s", array[1]
 if not number
 			exit_code = array[1];
 */
+			if (array[1] == NULL)
+				break;
+
 			exit_code = custom_atoi(array[1]);
 			if (exit_code == -1)
 			{
