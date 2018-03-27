@@ -1,0 +1,75 @@
+.TH HSH "1" "\(co March 28, 2018" "v1"
+.SH NAME
+.B hsh
+\- Command interpreter (shell)
+.SH SYNOPSIS
+.B hsh
+.SH DESCRIPTION
+.B hsh
+is a custom made command interpreter.
+.SH RETURN VALUE
+.B hsh 
+will return zero (0), unless specified by an exit code.
+
+.SH FORMATTING A MANPAGE
+.br
+Newine^
+.P
+Newine and space^
+.br
+.B Bold
+
+.HP 2
+.BR flag
+.br
+Flag description here.
+
+
+.SH EXAMPLE
+Here is an example of how you could implement the shell.
+.P
+.HP 2
+$ hsh
+.br
+.B $
+<-- you're in!
+.br
+.B $
+ls -l
+.br
+total 0
+.br
+.B $
+touch file.txt
+.br
+.B $
+ls
+.br
+file.txt
+.br
+.B $
+exit
+.P
+$ <-- you're out!
+
+.P
+OR
+.br
+Pipe into it
+
+$ echo "ls" | ./hsh
+.br
+file_1\ file_2
+
+.SH SEE ALSO
+.BR sh\fR(1)\f
+.SH BUGS
+No known bugs.
+.PP
+Please contact one of the authors in
+.br
+regard to any unanticipated behavior.
+.SH AUTHORS
+Arik Rosenthal Becky Chen
+.br
+\ @aDENTinTIME\ \ @bchen803

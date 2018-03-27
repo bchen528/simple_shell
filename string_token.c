@@ -27,7 +27,7 @@ char **string_token(char *in, char *delim)
 	{
 		ptr = strtok(NULL, delim);
 	}
-	ar = malloc((sizeof(char *) * i) + 1);
+	ar = malloc(sizeof(char *) * (i + 1));
 	if (ar == NULL)
 		return (NULL);
 

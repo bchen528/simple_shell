@@ -22,8 +22,8 @@ char *path_helper(char **path, char *name);
 char *stupid_cat(char *path, char *name);
 int forking_helper(char **av);
 int print_env(char **env);
-int custom_atoi(char *s);
-char *_itoa(int n);
+int custom_atoi(int *status, char *s);
 char *_strdup(char *str);
+char *_itoa(int num);
 
 #endif /* SHED_H */

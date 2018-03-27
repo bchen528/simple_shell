@@ -1,40 +1,26 @@
 #include "shed.h"
 
-char *_itoa(int n)
+char *_itoa(int num)
 {
 	char *s;
-	char temp;
-	int i = 0, j, count = 0, a = n;
+	int i = 0, num_cpy = num;
 
-	while (a > 0)
+	while (num_cpy > 0)
 	{
-		a = a / 10;
-		count++;
+		num_cpy /= 10;
+		i++;
 	}
 
-	s = malloc(sizeof(char) * (count + 1));
+	s = malloc(sizeof(char) * (i + 1));
 	if (s == NULL)
 		return (NULL);
 
-	while (n > 0)
-	{
-		s[i] = (n % 10) + '0';
-		n = n / 10;
-		i++;
-	}
-
 	s[i] = '\0';
 
-	i = 0;
-	j = _strlen(s) - 1;
-
-	while (i < j)
+	while (i--)
 	{
-		temp = s[i];
-		s[i] = s[j];
-		s[j] = temp;
-		i++;
-		j--;
+		s[i] = (num % 10) + '0';
+		num /= 10;
 	}
 
 	return (s);

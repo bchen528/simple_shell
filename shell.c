@@ -7,8 +7,8 @@ int main(int argc, char **argv, char **env)
 /* o FREE path! memory leak! */
 	ssize_t run_shell = 0;
 	size_t count = 0;
-	char *line = NULL, **array = NULL, *ptr = NULL, *free_me_1, *free_me_2;
-	int i = 0, exit_code = 0, call_count = 0;
+	char *line = NULL, **array = NULL, *ptr = NULL, *free_me;
+	int i = 0, exit_code = 0, call_count = 0, status = 0;
 
 	while (42)
 	{
@@ -17,9 +17,10 @@ int main(int argc, char **argv, char **env)
 		line = NULL;
 		array = NULL;
 		ptr = NULL;
+		free_me = NULL;
 		i = 0;
 		exit_code = 0;
-		call_count = 0;
+		status = 0;
 
 		call_count++;
 /* should we write to stdin so it's unpipable */
@@ -52,20 +53,21 @@ if not number
 			if (array[1] == NULL)
 				break;
 
-			exit_code = custom_atoi(array[1]);
-			if (exit_code == -1)
+			exit_code = custom_atoi(&status, array[1]);
+			if (status)
 			{
+				free_me = _itoa(call_count);
 				write(STDIN_FILENO, argv[0], _strlen(argv[0]));
 				write(STDIN_FILENO, ": ", 2);
-				write(STDIN_FILENO, free_me_1 = _itoa(call_count), _strlen(free_me_2 = _itoa(call_count)));
-/*				write(STDIN_FILENO, call_count, _strlen(?:)); */
+				write(STDIN_FILENO, free_me, _strlen(free_me));
 				write(STDIN_FILENO, ": ", 2);
 				write(STDIN_FILENO, "exit", 4);
 				write(STDIN_FILENO, ": ", 2);
 				write(STDIN_FILENO, "Illegal number", 14);
 				write(STDIN_FILENO, ": ", 2);
-				free(free_me_1);
-				free(free_me_2);
+				write(STDIN_FILENO, array[1], _strlen(array[1]));
+				write(STDIN_FILENO, "\n", 1);
+				free(free_me);
 			}
 			else
 				break;

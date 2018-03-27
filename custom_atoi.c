@@ -1,12 +1,13 @@
 #include "shed.h"
 
-int custom_atoi(char *s)
+int custom_atoi(int *status, char *s)
 {
-	int i, sum, mul;
+	int i, sum, mul, go;
 
 	i = 0;
 	sum = 0;
 	mul = 1;
+	go = 0;
 
 	if (!s)
 		return (-1);
@@ -19,13 +20,10 @@ int custom_atoi(char *s)
 	while (i--)
 	{
 		if (s[i] > 57 || s[i] < 48)
-			return (-1);
+			*status = 1;
 		sum += (s[i] - 48) * mul;
 		mul *= 10;
 	}
-
-	if (s[0] == '-')
-		sum *= -1;
 
 	return (sum);
 }
