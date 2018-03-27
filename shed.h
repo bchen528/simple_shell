@@ -13,6 +13,8 @@
 #define win(x) write(STDOUT_FILENO, x, _strlen(x))
 #define din() write(STDOUT_FILENO, "###\n", 4)
 
+extern char **environ;
+
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char **string_token(char *in, char *delim);
