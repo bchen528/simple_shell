@@ -8,11 +8,11 @@ char *_itoa(int n)
 
 	while (a > 0)
 	{
-		a = n / 10;
+		a = a / 10;
 		count++;
 	}
 
-	s = malloc(sizeof(char) * count + 1);
+	s = malloc(sizeof(char) * (count + 1));
 	if (s == NULL)
 		return (NULL);
 
