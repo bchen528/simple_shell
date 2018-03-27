@@ -1,7 +1,5 @@
 #include "shed.h"
 
-extern char **environ;
-
 /**
  * splitEnv - tokenizes a given string
  * @str: string to be parsed
@@ -11,36 +9,35 @@ extern char **environ;
 
 char **splitEnv(char *str, const char *delim)
 {
-        char *token;
-        char **buf;
-        int i = 0, j = 0, count = 2;
+	char *token;
+	char **buf;
+	int i = 0, j = 0, count = 2;
 
 /*allocate space for array of pointers to tokens*/
 
-        buf = malloc(sizeof(char *) * count + 1);
-        if (buf == NULL)
-                return (NULL);
+	buf = malloc(sizeof(char *) * count + 1);
+	if (buf == NULL)
+		return (NULL);
 
 /*first word is command*/
-        token = strtok(str, delim);
+	token = strtok(str, delim);
 
 /*assign other parameters to buffer*/
+	while (token != NULL)
+	{
+		buf[j] = strdup(token);
+		token = strtok(NULL, delim);
+		j++;
+	}
+	buf[j] = NULL;
 
-        while (token != NULL)
-        {
-                buf[j] = strdup(token);
-                token = strtok(NULL, delim);
-                j++;
-        }
-        buf[j] = NULL;
-
-        return (buf);
+	return (buf);
 }
 
 /**
  * _getenv - get an environment variable
  * @name: string containing name of the requested variable
- * Return: null-terminated string with value of 
+ * Return: null-terminated string with value of
  * requested environment variable, or
  * NULL if environment variable DNE
  */
@@ -65,8 +62,8 @@ char *_getenv(const char *name)
 		i++;
 	}
 	return (value);
-
 }
+
 int main(void)
 {
 	printf("PATH: %s\n", _getenv("PATH"));
