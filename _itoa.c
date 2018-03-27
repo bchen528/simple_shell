@@ -4,13 +4,14 @@ char *_itoa(int n)
 {
 	char *s;
 	char temp;
-	int i = 0, j, count = 0, a;
+	int i = 0, j, count = 0, a = n;
 
 	while (a > 0)
 	{
 		a = n / 10;
 		count++;
 	}
+
 	s = malloc(sizeof(char) * count + 1);
 	if (s == NULL)
 		return (NULL);
