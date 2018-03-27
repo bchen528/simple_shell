@@ -1,4 +1,4 @@
-#include "head.h"
+#include "shed.h"
 
 char *stupid_cat(char *path, char *name)
 {

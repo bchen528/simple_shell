@@ -1,4 +1,4 @@
-#include "head.h"
+#include "shed.h"
 
 int main(int argc, char **argv, char **env)
 {
@@ -7,7 +7,7 @@ int main(int argc, char **argv, char **env)
 /* o FREE path! memory leak! */
 	ssize_t run_shell = 0;
 	size_t count = 0;
-	char *line = NULL, **array = NULL, *ptr = NULL;
+	char *line = NULL, **array = NULL, *ptr = NULL, *free_me_1, *free_me_2;
 	int i = 0, exit_code = 0, call_count = 0;
 
 	while (42)
@@ -49,13 +49,23 @@ not number and print out "sh: 1: exit: Illegal number: %s", array[1]
 if not number
 			exit_code = array[1];
 */
-			write(STDIN_FILENO, argv[0], _strlen(argv[0]));
-			write(STDIN_FILENO, ": ", 2);
-			write(STDIN_FILENO, call_count, _strlen(?:));
-			write(STDIN_FILENO, ": exit", 6);
-					fix call_count number to print istead of buffer of 100
-					exit_code = array[1]; if not string
-			break;
+			exit_code = custom_atoi(array[1]);
+			if (exit_code == -1)
+			{
+				write(STDIN_FILENO, argv[0], _strlen(argv[0]));
+				write(STDIN_FILENO, ": ", 2);
+				write(STDIN_FILENO, free_me_1 = _itoa(call_count), _strlen(free_me_2 = _itoa(call_count)));
+/*				write(STDIN_FILENO, call_count, _strlen(?:)); */
+				write(STDIN_FILENO, ": ", 2);
+				write(STDIN_FILENO, "exit", 4);
+				write(STDIN_FILENO, ": ", 2);
+				write(STDIN_FILENO, "Illegal number", 14);
+				write(STDIN_FILENO, ": ", 2);
+				free(free_me_1);
+				free(free_me_2);
+			}
+			else
+				break;
 		}
 		if (array != NULL && !(strcmp(array[0], "env")))
 		{
@@ -91,8 +101,11 @@ in this main func or in the helper funcs?
 	}
 /*	free(ptr);
 	free(path); */
-	free(array[0]);
-	free(array);
+	if (array != NULL)
+	{
+		free(array[0]);
+		free(array);
+	}
 /*
 free 'array' if NULL or not?
 	if (array != NULL)

@@ -1,4 +1,4 @@
-#include "head.h"
+#include "shed.h"
 
 char **string_token(char *in, char *delim)
 {
@@ -13,8 +13,8 @@ char **string_token(char *in, char *delim)
 	ptr = NULL;
 	ar = NULL;
 /*duplicate string*/
-	in_1 = strdup(in);
-	in_2 = strdup(in);
+	in_1 = _strdup(in);
+	in_2 = _strdup(in);
 	if (in_1 == NULL)
 		return (NULL);
 /*find number of tokens*/

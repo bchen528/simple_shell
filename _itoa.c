@@ -12,6 +12,8 @@ char *_itoa(int n)
 		count++;
 	}
 	s = malloc(sizeof(char) * count + 1);
+	if (s == NULL)
+		return (NULL);
 
 	while (n > 0)
 	{
