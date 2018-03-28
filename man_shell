@@ -13,9 +13,9 @@ will return zero (0), unless specified by an exit code.
 
 .SH FORMATTING A MANPAGE
 .br
-Newine^
+Newline^
 .P
-Newine and space^
+Newline and space^
 .br
 .B Bold
 
