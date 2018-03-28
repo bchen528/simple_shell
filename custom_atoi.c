@@ -2,15 +2,11 @@
 
 int custom_atoi(int *status, char *s)
 {
-	int i, sum, mul, go;
+	int i, sum, mul;
 
 	i = 0;
 	sum = 0;
 	mul = 1;
-	go = 0;
-
-	if (!s)
-		return (-1);
 
 	while (s[i])
 	{

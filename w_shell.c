@@ -1,14 +1,12 @@
 #include "shed.h"
 
 /**
- * main -
+ * main - A simple shell that will execute programs in the system.
  *
- * @argc -
- * @argv -
- * @env -
- *
- *
- *
+ * @argc: Number of arguments from command line, passed to shell at launch.
+ * @argv: Array of arguments passed to shell at launch.
+ * @env: Array of enviromental variables.
+ * Return: Exit code of 0 upon success, or number given to "exit"
  */
 
 int main(int argc, char **argv, char **env)
@@ -17,8 +15,9 @@ int main(int argc, char **argv, char **env)
 	char **path_token = free_path_token + 1;
 	ssize_t run_shell = 0;
 	size_t count = 0;
-	char *line = NULL, **array = NULL, *ptr = NULL, *a_call_count;
-	int i = 0, exit_code = 0, call_count = 0, error = 0;
+	char *line = NULL, **array = NULL, *a_call_count = NULL;
+	int exit_code = 0, call_count = 0, error = 0;
+	(void)argc;
 
 	while (42)
 	{
@@ -26,9 +25,7 @@ int main(int argc, char **argv, char **env)
 		count = 0;
 		line = NULL;
 		array = NULL;
-		ptr = NULL;
 		a_call_count = NULL;
-		i = 0;
 		exit_code = 0;
 		error = 0;
 		call_count++;
@@ -37,22 +34,14 @@ int main(int argc, char **argv, char **env)
 		run_shell = getline(&line, &count, stdin);
 		if (run_shell == -1)
 		{
-/* remove perror */
 			write(STDIN_FILENO, "\n", 1);
 			return (0);
-/*
-			perror("Arik, getline failed");
-			line = NULL;
-*/
 		}
 		array = tokenizer(line, "\n ");
-		if (array == NULL)
-
-/*			win("tokenizer pooped\n"); */
+		if (line != NULL)
 			free(line);
-/*		win("tokenizer failed y'all\n"); */
-/* use OUR _strcmp */
-		if (array != NULL && !(strcmp(array[0], "exit")))
+
+		if (array != NULL && !(_strcmp(array[0], "exit")))
 		{
 			if (array[1] == NULL)
 				break;
@@ -68,63 +57,26 @@ int main(int argc, char **argv, char **env)
 			else
 				break;
 		}
-		if (array != NULL && !(strcmp(array[0], "env")))
+		else if (array != NULL && !(_strcmp(array[0], "env")))
 		{
 			print_env(env);
 		}
-		if (array != NULL && access(array[0], F_OK) == -1)
+		else if (array != NULL && access(array[0], F_OK) == -1)
 		{
 			array[0] = smart_cat(path_token, array[0]);
+			if (array[0] == NULL)
+				array[0] = _strdup("(nil)");
 		}
-/* still need to free array[0] i think */
-		if (forking_helper(array))
-		{
-			perror("forking failed y'all, or array was NULL");
-/* if fail print error */
-		}
+		if (array != NULL && _strcmp(array[0], "(nil)"))
+			forking_helper(array);
 /* OO
 create error message that includes 'call_count'
 name of program argv[0]
 maybe create a pointer 'ptr' for function (i.e. 'ls') and free it later?
 */
-/*
-		if (execve(array[0], array, NULL) == -1)
-			perror("Arik, execve failed");
-
-where should we have errors?
-in this main func or in the helper funcs?
-
-		if (array != NULL)
-		{
-			free(array[0]);
-			free(array);
-		}
-	if (line != NULL)
-		free(line);
-*/
-	free_array(array);
+		free_array(array);
 	}
-/*	free(ptr); */
-
 	free_array(free_path_token);
 	free_array(array);
-/*
-	if (line != NULL)
-		free(line);
-
-	if (array != NULL)
-	{
-		free(array[0]);
-		free(array);
-	}
-
-
-free 'array' if NULL or not?
-	if (array != NULL)
-		free(array);
-
-	if (line != NULL)
-		free(line);
-*/
 	return (exit_code);
 }

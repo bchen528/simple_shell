@@ -34,10 +34,18 @@ char *smart_cat(char **path, char *name)
 		buff[i] = '\0';
 
 		if (access(buff, F_OK) == 0)
+		{
+win(name);
+win(" - FREE\n");
+			free(name);
 			return (buff);
+		}
 		else
 			free(buff);
 		v++;
 	}
+win(name);
+win(" - FREE\n");
+	free(name);
 	return (NULL);
 }
