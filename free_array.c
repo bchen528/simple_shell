@@ -6,14 +6,15 @@ void free_array(char **array)
 
 	if (array == NULL)
 		return;
-
+din();
 	while (array[i] != NULL)
 	{
+win(array[i]);
+win(" - FREE\n");
 		free(array[i]);
 		i++;
-win("free loop\n");
 	}
-/*
+/* what if we don't loop through all, huh?
 	free(array[i]);
 win("free null\n");
 */

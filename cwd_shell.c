@@ -13,13 +13,14 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char **free_path_token = tokenizer(var_finder("PATH", env), ":=");
+	char **free_path_token = tokenizer(var_finder("PATH", env), ":");
 	char **path_token = free_path_token + 1;
 	ssize_t run_shell = 0;
 	size_t count = 0;
 	char *line = NULL, **array = NULL, *ptr = NULL, *a_call_count;
 	int i = 0, exit_code = 0, call_count = 0, error = 0;
-
+printf("%s\n", free_path_token[0]);
+printf("%s\n", path_token[0]);
 	while (42)
 	{
 		run_shell = 0;
@@ -33,11 +34,13 @@ int main(int argc, char **argv, char **env)
 		error = 0;
 		call_count++;
 
+		write(STDIN_FILENO, var_finder("PWD", env), _strlen(var_finder("PWD", env)));
 		write(STDIN_FILENO, "\033[1;35m$\033[0m ", 13);
 		run_shell = getline(&line, &count, stdin);
 		if (run_shell == -1)
 		{
 /* remove perror */
+			perror("run_shell -1");
 			write(STDIN_FILENO, "\n", 1);
 			return (0);
 /*
@@ -93,32 +96,32 @@ maybe create a pointer 'ptr' for function (i.e. 'ls') and free it later?
 
 where should we have errors?
 in this main func or in the helper funcs?
-
+*/
 		if (array != NULL)
 		{
 			free(array[0]);
 			free(array);
 		}
+/*	if (line != NULL)
+		free(line);
+
+	free_array(array);
+*/	}
+/*	free(ptr); */
+
+	free(free_path_token);
+/*	free_array(array);
+
 	if (line != NULL)
 		free(line);
 */
-	free_array(array);
-	}
-/*	free(ptr); */
-
-	free_array(free_path_token);
-	free_array(array);
-/*
-	if (line != NULL)
-		free(line);
-
 	if (array != NULL)
 	{
 		free(array[0]);
 		free(array);
 	}
 
-
+/*
 free 'array' if NULL or not?
 	if (array != NULL)
 		free(array);

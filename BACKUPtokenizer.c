@@ -47,5 +47,6 @@ char **tokenizer(char *str, const char *delim)
 
 	ar[i] = NULL;
 	free(str_1);
+	free(str_2);
 	return (ar);
 }
