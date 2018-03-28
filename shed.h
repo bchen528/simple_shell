@@ -40,5 +40,5 @@ char *_strdup(char *str);
 char *_itoa(int num);
 char **splitEnv(char *str, const char *delim);
 char *_getenv(const char *name, char **env);
-
+char *var_finder(char *var, char **env);
 #endif /* SHED_H */
