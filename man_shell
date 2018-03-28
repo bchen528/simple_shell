@@ -8,7 +8,7 @@
 .B hsh
 is a custom made command interpreter.
 .SH RETURN VALUE
-.B hsh 
+.B hsh
 will return zero (0), unless specified by an exit code.
 
 .SH FORMATTING A MANPAGE

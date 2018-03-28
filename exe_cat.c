@@ -11,7 +11,8 @@ char *exe_cat(char **path, char *name)
 
 	while (path[i])
 	{
-		if (!(dir = opendir(path[i])))
+		dir = opendir(path[i]);
+		if (!(dir))
 			return (NULL);
 		while (dd = readdir(dir))
 		{

@@ -41,4 +41,6 @@ char *_itoa(int num);
 char **splitEnv(char *str, const char *delim);
 char *_getenv(const char *name, char **env);
 char *var_finder(char *var, char **env);
+void free_array(char **array);
+
 #endif /* SHED_H */

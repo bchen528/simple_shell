@@ -10,7 +10,7 @@ int forking_helper(char **av)
 	forking_val = fork();
 	if (forking_val == -1)
 	{
-		perror("Forking failed");
+/*		perror("Forking failed"); */
 		return (1);
 	}
 

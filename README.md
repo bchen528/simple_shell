@@ -43,7 +43,7 @@ This repository contains the following files:
 | int forking_helper(char **av) | executes shell |
 | char *stupid_cat(char *path, char *name) | append command name to its directory path to make actual command executable |
 | char *_getenv(const char *name) | get value of environment variable |
-| char **splitEnv(char *str, const char *delim) | tokenizes environment variable name and its value using | 
+| char **splitEnv(char *str, const char *delim) | tokenizes environment variable name and its value using |
 
 ## Usage
 
@@ -54,7 +54,7 @@ This repository contains the following files:
 5. Exit shell by typing "exit"
 
 ## Installation
-Clone the repository. Compile the ".c" files. Run executable. 
+Clone the repository. Compile the ".c" files. Run executable.
 
 ```
 $ git clone https://github.com/aDENTinTIME/simple_shell.git

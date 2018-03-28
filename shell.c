@@ -1,9 +1,18 @@
 #include "shed.h"
 
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 int main(int argc, char **argv, char **env)
 {
-	char **path = tokenizer(_getenv("PATH", env), ":=");
-/* o FREE path! memory leak! */
+	char **free_path_token = tokenizer(var_finder("PATH", env), ":=");
+	char **path_token = free_path_token + 1;
 	ssize_t run_shell = 0;
 	size_t count = 0;
 	char *line = NULL, **array = NULL, *ptr = NULL, *a_call_count;
@@ -16,17 +25,18 @@ int main(int argc, char **argv, char **env)
 		line = NULL;
 		array = NULL;
 		ptr = NULL;
-		a_call_count= NULL;
+		a_call_count = NULL;
 		i = 0;
 		exit_code = 0;
 		error = 0;
-
 		call_count++;
-/* should we write to stdin so it's unpipable */
+
 		write(STDIN_FILENO, "\033[1;35m$\033[0m ", 13);
 		run_shell = getline(&line, &count, stdin);
 		if (run_shell == -1)
 		{
+/* remove perror */
+			perror("run_shell -1");
 			write(STDIN_FILENO, "\n", 1);
 			return (0);
 /*
@@ -36,19 +46,12 @@ int main(int argc, char **argv, char **env)
 		}
 		array = tokenizer(line, "\n ");
 		if (array == NULL)
+
 			free(line);
+/*		win("tokenizer failed y'all\n"); */
+/* use OUR _strcmp */
 		if (array != NULL && !(strcmp(array[0], "exit")))
 		{
-/*			write(2, "sh: 1: exit: Illegal number: ", 29);
-			write(2, array[0], _strlen(array[0]));
-			write(2, "\n", 1);
-*/
-/* OOO
-make custom atoi that returns -1 when being asked to convert something
-not number and print out "sh: 1: exit: Illegal number: %s", array[1]
-if not number
-			exit_code = array[1];
-*/
 			if (array[1] == NULL)
 				break;
 
@@ -56,6 +59,7 @@ if not number
 			if (error)
 			{
 				a_call_count = _itoa(call_count);
+/* do NOT use perror here */
 				WERR(argv[0], a_call_count, array[0], "Illegal number", array[1]);
 				free(a_call_count);
 			}
@@ -70,10 +74,25 @@ if not number
 			array = NULL;
 */
 		if (array != NULL && access(array[0], F_OK) == -1)
-			array[0] = exe_cat(path, array[0]);
+		{
+/*
+			ptr = array[0];
+win(ptr);
+win(array[0]);
+			array[0] = exe_cat(path_token, array[0]);
+			free(ptr);
+*/
 
+			array[0] = exe_cat(path_token, array[0]);
+
+/*			ptr = exe_cat(path_token, array[0]);
+			free(array[0]);
+			array[0] = ptr;
+*/
+		}
 		if (forking_helper(array))
 		{
+			perror("forking failed y'all");
 /* if fail print error */
 		}
 /* OO
@@ -93,16 +112,25 @@ in this main func or in the helper funcs?
 			free(array[0]);
 			free(array);
 		}
+/*	if (line != NULL)
+		free(line);
+*/
+/*	free_array(array); */
 	}
 /*	free(ptr); */
 
-	free(path);
+	free(free_path_token);
+	free_array(array);
+/*
+	if (line != NULL)
+		free(line);
 
 	if (array != NULL)
 	{
 		free(array[0]);
 		free(array);
 	}
+*/
 /*
 free 'array' if NULL or not?
 	if (array != NULL)
