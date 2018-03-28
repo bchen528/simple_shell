@@ -15,7 +15,7 @@ int main(int argc, char **argv, char **env)
 	char **path_token = free_path_token + 1;
 	ssize_t run_shell = 0;
 	size_t count = 0;
-	char *line = NULL, **array = NULL, *a_call_count = NULL;
+	char *line = NULL, **array = NULL, *ptr = NULL,  *a_call_count = NULL;
 	int exit_code = 0, call_count = 0, error = 0;
 	(void)argc;
 
@@ -28,6 +28,7 @@ int main(int argc, char **argv, char **env)
 		a_call_count = NULL;
 		exit_code = 0;
 		error = 0;
+		ptr = NULL;
 		call_count++;
 
 		write(STDIN_FILENO, "\033[1;35m$\033[0m ", 13);
@@ -60,8 +61,7 @@ int main(int argc, char **argv, char **env)
 			if (error)
 			{
 				a_call_count = _itoa(call_count);
-/* do NOT use perror here */
-				WERR(argv[0], a_call_count, array[0], "Illegal number", array[1]);
+				ERR_EXIT(argv[0], a_call_count, array[1]);
 				free(a_call_count);
 			}
 			else
@@ -73,17 +73,19 @@ int main(int argc, char **argv, char **env)
 		}
 		else if (array != NULL && access(array[0], F_OK) == -1)
 		{
+			ptr = array[0];
 			array[0] = smart_cat(path_token, array[0]);
 			if (array[0] == NULL)
+			{
 				array[0] = _strdup("(nil)");
+				a_call_count = _itoa(call_count);
+				ERR_EXE(argv[0], a_call_count, ptr);
+				free(a_call_count);
+			}
+			free(ptr);
 		}
 		if (array != NULL && _strcmp(array[0], "(nil)"))
 			forking_helper(array);
-/* OO
-create error message that includes 'call_count'
-name of program argv[0]
-maybe create a pointer 'ptr' for function (i.e. 'ls') and free it later?
-*/
 		free_array(array);
 	}
 	free_array(free_path_token);

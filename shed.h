@@ -14,17 +14,24 @@
 #define win(x) write(STDOUT_FILENO, x, _strlen(x))
 #define din() write(STDOUT_FILENO, "###\n", 4)
 
-#define WERR(a, b, c, d, e)\
+#define ERR_EXIT(a, b, c)\
+do {\
+	write(STDIN_FILENO, a, _strlen(a));\
+	write(STDIN_FILENO, ": ", 2);\
+	write(STDIN_FILENO, b, _strlen(b));\
+	write(STDIN_FILENO, ": exit: Illegal number: ", 24);\
+	write(STDIN_FILENO, c, _strlen(c));\
+	write(STDIN_FILENO, "\n", 1);\
+} while (0)
+
+#define ERR_EXE(a, b, c)\
 do {\
 	write(STDIN_FILENO, a, _strlen(a));\
 	write(STDIN_FILENO, ": ", 2);\
 	write(STDIN_FILENO, b, _strlen(b));\
 	write(STDIN_FILENO, ": ", 2);\
 	write(STDIN_FILENO, c, _strlen(c));\
-	write(STDIN_FILENO, ": ", 2);\
-	write(STDIN_FILENO, d, _strlen(d));\
-	write(STDIN_FILENO, ": ", 2);\
-	write(STDIN_FILENO, e, _strlen(e));\
+	write(STDIN_FILENO, ": not found", 11);\
 	write(STDIN_FILENO, "\n", 1);\
 } while (0)
 

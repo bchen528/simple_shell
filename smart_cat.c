@@ -35,13 +35,11 @@ char *smart_cat(char **path, char *name)
 
 		if (access(buff, F_OK) == 0)
 		{
-			free(name);
 			return (buff);
 		}
 		else
 			free(buff);
 		v++;
 	}
-	free(name);
 	return (NULL);
 }
