@@ -37,10 +37,20 @@ int main(int argc, char **argv, char **env)
 			write(STDIN_FILENO, "\n", 1);
 			return (0);
 		}
-		array = tokenizer(line, "\n ");
 		if (line != NULL)
-			free(line);
+		{
+			if (line[0] == '\n')
+			{
+				free(line);
+				line = NULL;
+			}
+		}
 
+		if (line != NULL)
+		{
+			array = tokenizer(line, "\n ");
+			free(line);
+		}
 		if (array != NULL && !(_strcmp(array[0], "exit")))
 		{
 			if (array[1] == NULL)

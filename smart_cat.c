@@ -35,8 +35,6 @@ char *smart_cat(char **path, char *name)
 
 		if (access(buff, F_OK) == 0)
 		{
-win(name);
-win(" - FREE\n");
 			free(name);
 			return (buff);
 		}
@@ -44,8 +42,6 @@ win(" - FREE\n");
 			free(buff);
 		v++;
 	}
-win(name);
-win(" - FREE\n");
 	free(name);
 	return (NULL);
 }
