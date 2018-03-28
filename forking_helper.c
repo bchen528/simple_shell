@@ -5,7 +5,7 @@ int forking_helper(char **av)
 	pid_t forking_val;
 
 	if (!(av))
-		return (0);
+		return (1);
 
 	forking_val = fork();
 	if (forking_val == -1)

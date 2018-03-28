@@ -33,6 +33,7 @@ int _strcmp(char *s1, char *s2);
 char **tokenizer(char *str, const char *delim);
 char *exe_cat(char **path, char *name);
 char *stupid_cat(char *path, char *name);
+char *smart_cat(char **path, char *name);
 int forking_helper(char **av);
 int print_env(char **env);
 int custom_atoi(int *status, char *s);
