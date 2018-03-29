@@ -15,13 +15,13 @@ char *smart_cat(char **path, char *name)
 
 	if (!(path) || !(name))
 		return (NULL);
-
+	if (name[0] == '/')
+		return (NULL);
 	while (path[v] != NULL)
 	{
 		buff = malloc(sizeof(char) * (_strlen(path[v]) + _strlen(name) + 2));
 		if (!(buff))
 			return (NULL);
-
 		i = 0;
 		ii = 0;
 		while (path[v][ii])

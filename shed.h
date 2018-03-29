@@ -16,23 +16,23 @@
 
 #define ERR_EXIT(a, b, c)\
 do {\
-	write(STDIN_FILENO, a, _strlen(a));\
-	write(STDIN_FILENO, ": ", 2);\
-	write(STDIN_FILENO, b, _strlen(b));\
-	write(STDIN_FILENO, ": exit: Illegal number: ", 24);\
-	write(STDIN_FILENO, c, _strlen(c));\
-	write(STDIN_FILENO, "\n", 1);\
+	write(STDERR_FILENO, a, _strlen(a));\
+	write(STDERR_FILENO, ": ", 2);\
+	write(STDERR_FILENO, b, _strlen(b));\
+	write(STDERR_FILENO, ": exit: Illegal number: ", 24);\
+	write(STDERR_FILENO, c, _strlen(c));\
+	write(STDERR_FILENO, "\n", 1);\
 } while (0)
 
 #define ERR_EXE(a, b, c)\
 do {\
-	write(STDIN_FILENO, a, _strlen(a));\
-	write(STDIN_FILENO, ": ", 2);\
-	write(STDIN_FILENO, b, _strlen(b));\
-	write(STDIN_FILENO, ": ", 2);\
-	write(STDIN_FILENO, c, _strlen(c));\
-	write(STDIN_FILENO, ": not found", 11);\
-	write(STDIN_FILENO, "\n", 1);\
+	write(STDERR_FILENO, a, _strlen(a));\
+	write(STDERR_FILENO, ": ", 2);\
+	write(STDERR_FILENO, b, _strlen(b));\
+	write(STDERR_FILENO, ": ", 2);\
+	write(STDERR_FILENO, c, _strlen(c));\
+	write(STDERR_FILENO, ": not found", 11);\
+	write(STDERR_FILENO, "\n", 1);\
 } while (0)
 
 int _strlen(char *s);
