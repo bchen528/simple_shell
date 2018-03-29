@@ -30,9 +30,19 @@ This repository contains the following files:
 | -------------- | --------------------- |
 | shell.c | the main function |
 | shed.h | header file |
-| string\_helpers.c | contains functions that manipulate and tokenize a string |
-| exe\_helpers.c | contains functions that assist in executing a command read from the commandline |
-| env\_helpers.c | contains functions that utilize the PATH variable to access executable file of command |
+| _itoa.c | custom itoa function |
+| _strcmp.c | custom strcmp function |
+| _strdup.c | custom strdup function |
+| _strlen.c | custom strlen function |
+| custom_atoi.c | custom atoi function |
+| forking_helper.c | contains function to execute command read from commandline |
+| free_array.c | contains function to free array and its tokens |
+| life.c | contains a mix of important function calls |
+| print_env.c | contains function to print environment |
+| run_shell.c | contains function checking if user inputed anything |
+| smart_cat.c | contains function concatenating the command to its path directory |
+| tokenizer.c | contains function that parses the commandline string |
+| var_finder.c | contains function to find PATH variable in environment list |
 
 ## Function Descriptions
 | **Function** | **Description** |
@@ -44,6 +54,15 @@ This repository contains the following files:
 | char *stupid_cat(char *path, char *name) | append command name to its directory path to make actual command executable |
 | char *_getenv(const char *name) | get value of environment variable |
 | char **splitEnv(char *str, const char *delim) | tokenizes environment variable name and its value using |
+| char *smart_cat(char **path, char *name) | appends path to command to command |
+| int print_env(char **env) | print environment list |
+| int custom_atoi(int *status, char *s) | convert character to integer |
+| char *_strdup(char *str) | duplicate string |
+| char *_itoa(int num) | convert integer to characters |
+| char *var_finder(char *var, char **env) | find PATH variable |
+| void free_array(char **array) | free tokens in array and array itself |
+| int life(char **array, char **argv, char **env, char **p_t, int i, int *e_c) | calling a medley of essential functions |
+| int run_shell(int go) | check if command was entered by user |
 
 ## Usage
 

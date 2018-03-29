@@ -1,5 +1,18 @@
 #include "shed.h"
 
+/**
+ * life - exits main function, produce appropriate error messages,
+ * print environment, check if command is executable, fork and execute
+ *
+ * @array: array of pointers to commandline tokens
+ * @argv: current commandline arguments
+ * @env: array of environmental variables
+ * @p_t: array of pointers to tokenized path
+ * @i: number of calls
+ * @e_c: exit integer value
+ * Return: 1 on fail, 0 on success
+ */
+
 int life(char **array, char **argv, char **env, char **p_t, int i, int *e_c)
 {
 	int error = 0;

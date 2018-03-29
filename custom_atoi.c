@@ -1,5 +1,13 @@
 #include "shed.h"
 
+/**
+ * custom_atoi - convert a character-represented number into an integer
+ *
+ * @status: flag representing whether character is a number or not
+ * @s: character string
+ * Return: converted integer
+ */
+
 int custom_atoi(int *status, char *s)
 {
 	int i, sum, mul;

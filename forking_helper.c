@@ -1,5 +1,12 @@
 #include "shed.h"
 
+/**
+ * forking_helper - fork to create child process and execute command
+ *
+ * @av: commandline argument
+ * Return: 1 on fail, 0 on success
+ */
+
 int forking_helper(char **av)
 {
 	pid_t forking_val;

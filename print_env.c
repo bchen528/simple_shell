@@ -1,5 +1,12 @@
 #include "shed.h"
 
+/**
+ * print_env - print the environment list
+ *
+ * @env: array of pointers to environmental variables
+ * Return: 0
+ */
+
 int print_env(char **env)
 {
 	int i = 0;

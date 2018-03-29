@@ -1,5 +1,12 @@
 #include "shed.h"
 
+/**
+ * _itoa - convert integer to char
+ *
+ * @num: integer to be converted
+ * Return: character string of number
+ */
+
 char *_itoa(int num)
 {
 	char *s;

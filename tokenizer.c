@@ -1,13 +1,12 @@
 #include "shed.h"
 
 /**
- * tokenizer -
+ * tokenizer - parse a string into tokens using delimiters
  *
- * @str -
- * @delim -
- * Return:
+ * @str: string to be parsed
+ * @delim: delimiter
+ * Return: array of pointers to tokens
  */
-
 
 char **tokenizer(char *str, const char *delim)
 {

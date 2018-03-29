@@ -1,5 +1,13 @@
 #include "shed.h"
 
+/**
+ * smart_cat - append the command to its directory path
+ *
+ * @path: array of pointers to tokenized path directories
+ * @name: the command
+ * Return: buffer containing concatenated string of the command and its path
+ */
+
 char *smart_cat(char **path, char *name)
 {
 	char *buff = NULL;
