@@ -1,0 +1,81 @@
+.TH HSH "1" "\(co March 28, 2018" "v1"
+.SH NAME
+.B hsh
+\- Command interpreter (shell)
+.SH SYNOPSIS
+.B #include\ "shed.h"
+.br
+.B hsh
+.SH DESCRIPTION
+.B hsh
+is a custom made command interpreter. It will take a string as input, tokenize it, then execute any viable programs found in the PATH.
+.SH RETURN VALUE
+.B hsh
+will return zero (0), unless specified by an exit code.
+
+.SH EXAMPLE
+Here are a couple examples of how you can use the shell.
+
+=========================================
+
+.P
+.HP 2
+$ ./hsh
+
+.br
+.br
+.B $
+echo Hello World
+.br
+Hello World
+.br
+.B $
+pwd
+.br
+/home/directory
+.br
+.B $
+ls -l
+.br
+total 0
+.br
+.B $
+touch file_1.txt file_2.txt
+.br
+.B $
+ls
+.br
+file_1.txt file_2.txt
+.br
+.B $
+exit 42
+.P
+$ echo $?
+.br
+42
+
+=========================================
+
+$ echo "pwd" | ./hsh
+.br
+/home/directory
+
+$ echo "ls" | ./hsh
+.br
+file_1.txt\ file_2.txt
+.br
+
+=========================================
+
+.SH SEE ALSO
+.BR sh\fR(1)\f
+.SH BUGS
+No known bugs.
+.PP
+Please contact one of the authors in
+.br
+regard to any unanticipated behavior.
+.SH AUTHORS
+Arik Rosenthal Becky Chen
+.br
+\ @aDENTinTIME\ \ @bchen803
