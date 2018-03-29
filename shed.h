@@ -46,5 +46,7 @@ char *_strdup(char *str);
 char *_itoa(int num);
 char *var_finder(char *var, char **env);
 void free_array(char **array);
+int life(char **array, char **argv, char **env, char **p_t, int i, int *e_c);
+int run_shell(int go);
 
 #endif /* SHED_H */

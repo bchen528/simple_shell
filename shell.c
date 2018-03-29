@@ -12,31 +12,24 @@
 int main(int argc, char **argv, char **env)
 {
 	char **free_path_token = tokenizer(var_finder("PATH", env), ":=");
-	char **path_token = free_path_token + 1;
-	ssize_t run_shell = 0;
+	char **path_token = free_path_token + 1, *line = NULL, **array = NULL;
+	ssize_t go = 0;
 	size_t count = 0;
-	char *line = NULL, **array = NULL, *ptr = NULL,  *a_call_count = NULL;
-	int exit_code = 0, call_count = 0, error = 0;
+	int exit_code = 0, i = 0;
 	(void)argc;
 
 	while (42)
 	{
-		run_shell = 0;
 		count = 0;
 		line = NULL;
 		array = NULL;
-		a_call_count = NULL;
-		exit_code = 0;
-		error = 0;
-		ptr = NULL;
-		call_count++;
-
+		i++;
 		write(STDIN_FILENO, "\033[1;35m$\033[0m ", 13);
-		run_shell = getline(&line, &count, stdin);
-		if (run_shell == -1)
+		go = getline(&line, &count, stdin);
+		if (run_shell(go))
 		{
-			write(STDIN_FILENO, "\n", 1);
-			return (0);
+			free(line);
+			break;
 		}
 		if (line != NULL)
 		{
@@ -46,46 +39,13 @@ int main(int argc, char **argv, char **env)
 				line = NULL;
 			}
 		}
-
 		if (line != NULL)
 		{
 			array = tokenizer(line, "\n ");
 			free(line);
 		}
-		if (array != NULL && !(_strcmp(array[0], "exit")))
-		{
-			if (array[1] == NULL)
-				break;
-
-			exit_code = custom_atoi(&error, array[1]);
-			if (error)
-			{
-				a_call_count = _itoa(call_count);
-				ERR_EXIT(argv[0], a_call_count, array[1]);
-				free(a_call_count);
-			}
-			else
-				break;
-		}
-		else if (array != NULL && !(_strcmp(array[0], "env")))
-		{
-			print_env(env);
-		}
-		else if (array != NULL && access(array[0], F_OK) == -1)
-		{
-			ptr = array[0];
-			array[0] = smart_cat(path_token, array[0]);
-			if (array[0] == NULL)
-			{
-				array[0] = _strdup("(nil)");
-				a_call_count = _itoa(call_count);
-				ERR_EXE(argv[0], a_call_count, ptr);
-				free(a_call_count);
-			}
-			free(ptr);
-		}
-		if (array != NULL && _strcmp(array[0], "(nil)"))
-			forking_helper(array);
+		if (life(array, argv, env, path_token, i, &exit_code))
+			break;
 		free_array(array);
 	}
 	free_array(free_path_token);
