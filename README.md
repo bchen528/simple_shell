@@ -74,7 +74,6 @@ This repository contains the following files:
 
 ## Installation
 Clone the repository. Compile the ".c" files. Run executable.
-
 ```
 $ git clone https://github.com/aDENTinTIME/simple_shell.git
 ```
